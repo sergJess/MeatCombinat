@@ -34,6 +34,9 @@ font-weight: 700;
   min-height: 100%;
   overflow-x: hidden;
 }
+body{
+	font-family: "Montserrat", sans-serif;
+}
 a {
   text-decoration: none;
 }
