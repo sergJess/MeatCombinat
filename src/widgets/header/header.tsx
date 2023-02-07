@@ -11,8 +11,8 @@ export class Header extends React.Component {
       <header className="header">
         <div className="header-info">
           <Logotype />
-          <Phone isBordered={true} />
-          <Email />
+          <Phone isBordered={true} isSmallSpace={false} phones={[]} />
+          <Email isSmallSpace={false} email="info@spmk.ru" />
         </div>
         <div>
           <Navigation />

@@ -1,15 +1,21 @@
 import React from 'react';
 import './email.css';
 import { ReactComponent as Envelop } from './envelop.svg';
-
-export class Email extends React.Component {
+export type Temail = {
+  email: string;
+  isSmallSpace: boolean;
+};
+export class Email extends React.Component<Temail> {
+  constructor(props: Temail) {
+    super(props);
+  }
   render() {
+    const isSmallSpace = this.props.isSmallSpace;
+    const classEmail = isSmallSpace ? 'email-inner email-space-small' : 'email-inner email-space';
     return (
-      <div className="email-inner">
+      <div className={classEmail}>
         <Envelop />
-        <a className="primary-text" href="mail:info@spmk.ru">
-          info@spmk.ru
-        </a>
+        <p className="primary-text">{this.props.email}</p>
       </div>
     );
   }
