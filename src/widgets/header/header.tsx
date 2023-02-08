@@ -11,7 +11,11 @@ export class Header extends React.Component {
       <header className="header">
         <div className="header-info">
           <Logotype />
-          <Phone isBordered={true} isSmallSpace={false} phones={[]} />
+          <Phone
+            isBordered={true}
+            isSmallSpace={false}
+            phones={[{ text: '8 496 552-21-21', call: '84965522121' }]}
+          />
           <Email isSmallSpace={false} email="info@spmk.ru" />
         </div>
         <div>

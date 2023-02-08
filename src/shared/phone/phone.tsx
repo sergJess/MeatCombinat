@@ -1,15 +1,16 @@
 import React from 'react';
 import './phone.css';
 import { ReactComponent as PhoneSvg } from './phone.svg';
-export type Tphone = {
-  isBordered: boolean;
-  isSmallSpace: boolean;
-  phones: string[];
-};
 export type TphoneNumber = {
   text: string;
   call: string;
 };
+export type Tphone = {
+  isBordered: boolean;
+  isSmallSpace: boolean;
+  phones: TphoneNumber[];
+};
+
 export class Phone extends React.Component<Tphone> {
   constructor(props: Tphone) {
     super(props);
@@ -19,11 +20,24 @@ export class Phone extends React.Component<Tphone> {
     return (
       <div className="phones-inner">
         {phones.map((el, index) => {
-          return (
-            <a key={index} href={`tel:${el.call}`}>
-              {el.text}
-            </a>
-          );
+          if (length % index !== 0 && index + 1 !== length) {
+            return (
+              <div key={index} className="phone-block">
+                <a className="primary-text" href={`tel:${el.call}`}>
+                  {el.text}
+                </a>
+                <span className="phone-border"></span>
+              </div>
+            );
+          } else {
+            return (
+              <div key={index} className="phone-block">
+                <a className="primary-text" href={`tel:${el.call}`}>
+                  {el.text}
+                </a>
+              </div>
+            );
+          }
         })}
       </div>
     );
@@ -35,9 +49,7 @@ export class Phone extends React.Component<Tphone> {
     return (
       <div className={classPhone}>
         <PhoneSvg />
-        <a className="primary-text" href="tel:84965522121">
-          8 496 552-21-21
-        </a>
+        {this.createPhoneText(this.props.phones)}
       </div>
     );
   }
