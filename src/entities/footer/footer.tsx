@@ -9,8 +9,12 @@ export class Footer extends React.Component {
       <footer className="footer">
         <div className="footer-info">
           <Logotype />
-          <div>
-            <Phone isBordered={false} isSmallSpace={false} phones={[]} />
+          <div className="footer-contacts">
+            <Phone
+              isBordered={false}
+              isSmallSpace={false}
+              phones={[{ text: '8 496 552-21-21', call: '84965522121' }]}
+            />
             <Email isSmallSpace={false} email="info@spmk.ru" />
           </div>
         </div>
