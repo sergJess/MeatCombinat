@@ -1,0 +1,21 @@
+.line-down-inner{
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	max-width: 40px;
+}
+.line-down{
+	width: 1.5px;
+	height: 719px;
+	background-color: #D9D9D9;
+}
+.line-down-circle{
+	display: flex;
+	justify-content: center;
+	align-items: top;
+	width: 40px;
+	height: 40px;
+	border-radius: 50%;
+	background-color: #D1232A;
+}

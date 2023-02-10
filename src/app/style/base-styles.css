@@ -69,3 +69,8 @@ li {
   margin: 0;
   padding: 0;
 }
+.app{
+  max-width: 1930px;
+  padding: 0 5px;
+  margin: 0 auto;
+}

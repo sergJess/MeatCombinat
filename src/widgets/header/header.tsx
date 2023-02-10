@@ -1,8 +1,8 @@
 import React from 'react';
 import './header.css';
-import { Logotype } from 'shared/logo/logo';
-import { Phone } from 'shared/phone/phone';
-import { Email } from 'shared/email/email';
+import { Logotype } from 'shared/ui/logo/logo';
+import { Phone } from 'shared/ui/phone/phone';
+import { Email } from 'shared/ui/email/email';
 import { Navigation } from 'features/navigation/navigation';
 
 export class Header extends React.Component {
