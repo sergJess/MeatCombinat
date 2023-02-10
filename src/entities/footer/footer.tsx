@@ -18,7 +18,7 @@ export class Footer extends React.Component {
             <Email isSmallSpace={false} email="info@spmk.ru" />
           </div>
         </div>
-        <div className="primary-text">&#169; 1997-2023 АО `СПМК`</div>
+        <div className="primary-text">&#169; 1997-2023 АО &apos;СПМК&apos;</div>
       </footer>
     );
   }
