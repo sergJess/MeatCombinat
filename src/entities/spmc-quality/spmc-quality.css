@@ -1,0 +1,37 @@
+.spmc-quality-inner{
+	display: flex;
+ column-gap: 8.5rem;
+}
+
+.spmc-quality-title{
+	position: relative;
+	padding: 0 0 0 5.8rem;
+}
+.spmc-quality-title::before{
+	content: "";
+	position: absolute;
+	top: 6%;
+	left: 0;
+	width: 4px;
+	height: 88%;
+	background-color: #D1232A;
+}
+.spmc-quality-head-block{
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	row-gap: 5rem;
+	max-width: 565px;
+	padding: 11.2rem 0 0 7.5rem;
+	margin: 3rem 0 0 0;
+}
+.spmc-quality-head-block::before{
+	content: "спмк";
+	position: absolute;
+	top: 0;
+	left: 0;
+ text-transform: uppercase;
+	font-size: 18rem;
+	line-height: 20rem;
+	color: #A4C4CC33;
+}
