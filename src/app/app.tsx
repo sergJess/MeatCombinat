@@ -4,12 +4,14 @@ import './style/common-styles.css';
 import { Header } from 'widgets/header/header';
 import { Footer } from 'entities/footer/footer';
 import { SPMCQuality } from 'entities/spmc-quality/spmc-quality';
+import { Slider } from 'features/slider/slider';
 export class App extends React.Component {
   render(): React.ReactNode {
     return (
       <div className="app">
         <Header />
         <SPMCQuality />
+        <Slider slides={[]} settings={{ width: 800, height: 800 }} />
         <Footer />
       </div>
     );
