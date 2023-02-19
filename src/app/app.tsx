@@ -3,15 +3,13 @@ import './style/base-styles.css';
 import './style/common-styles.css';
 import { Header } from 'widgets/header/header';
 import { Footer } from 'entities/footer/footer';
-import { SPMCQuality } from 'entities/spmc-quality/spmc-quality';
-import { Slider } from 'features/slider/slider';
+import { MainPage } from 'pages/main-page/main-page';
 export class App extends React.Component {
   render(): React.ReactNode {
     return (
       <div className="app">
         <Header />
-        <SPMCQuality />
-        <Slider slides={[]} slideWidth={800} slideHeight={800} />
+        <MainPage />
         <Footer />
       </div>
     );

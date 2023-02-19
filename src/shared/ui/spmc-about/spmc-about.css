@@ -1,0 +1,27 @@
+.spmc-about__image-text{
+	color: #F5F5F5;
+	font-size: 7.5rem;
+	font-weight: 700;
+	list-style: 8.25rem;
+}
+.spmc-about__image-text_colored{
+	display: inline-block;
+	position: relative;
+	padding-left: 35px;
+	font-size: 6.8rem;
+	line-height: 7.48rem;
+	letter-spacing: 0.05em;
+	font-weight: 500;
+	font-style: italic;
+	color: #D1232A;
+}
+.spmc-about__image-text_colored::before{
+	content: "";
+	position: absolute;
+	width: 30px;
+	height: 4px;
+	left: 0;
+	top: 50%;
+	transform: translateY(50%);
+	background-color: #D1232A;
+}
