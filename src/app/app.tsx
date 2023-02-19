@@ -11,7 +11,7 @@ export class App extends React.Component {
       <div className="app">
         <Header />
         <SPMCQuality />
-        <Slider slides={[]} settings={{ width: 800, height: 800 }} />
+        <Slider slides={[]} slideWidth={800} slideHeight={800} />
         <Footer />
       </div>
     );

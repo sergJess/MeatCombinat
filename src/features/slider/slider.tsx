@@ -7,34 +7,97 @@ import Slide4 from './images/slide-4.png';
 import { ReactComponent as ArrowLeft } from './images/arrow-left.svg';
 import { ReactComponent as ArrowRight } from './images/arrow-right.svg';
 export const mockSlides = [Slide1, Slide2, Slide3, Slide4];
-type TsliderSettings = {
-  width: number;
-  height: number;
-};
+
 type TsliderProps = {
   slides: string[];
-  settings: TsliderSettings;
+  slideWidth: number;
+  slideHeight: number;
 };
-
-type tSliderState = {
+type tsliderState = {
+  isTransitioned: boolean;
+};
+type tSliderInfo = {
   currentSlide: number;
   allSlides: number;
+  currentPosition: number;
 };
 
-export class Slider extends React.Component<TsliderProps, tSliderState> {
+export class Slider extends React.Component<TsliderProps, tsliderState> {
   private sliderTrackRef: React.RefObject<HTMLDivElement>;
+  private sliderArrowLeft: React.RefObject<HTMLDivElement>;
+  private slidesLength: number;
+  private mockSlides: string[];
+  private sliderInfo: tSliderInfo;
   constructor(props: TsliderProps) {
     super(props);
     this.sliderTrackRef = React.createRef();
+    this.sliderArrowLeft = React.createRef();
     this.moveSlider = this.moveSlider.bind(this);
-    this.setState({ currentSlide: 1 });
+    this.slidesLength = this.props.slides.length;
+    this.sliderInfo = { currentSlide: 0, allSlides: this.slidesLength, currentPosition: 0 };
+    this.mockSlides = [Slide1, Slide2, Slide3, Slide4];
+    this.addFirstSlideToEnd(this.mockSlides);
+    this.infiniteSlide = this.infiniteSlide.bind(this);
+    this.state = { isTransitioned: true };
+  }
+  addFirstSlideToEnd(slides: string[]) {
+    if (slides.length > 1) {
+      slides.push(slides[0]);
+    }
+  }
+  setCurrentSlide(index: number) {
+    this.sliderInfo.currentSlide = index;
+  }
+  setCurrentPosition(index: number) {
+    this.sliderInfo.currentPosition = index;
+  }
+  componentDidUpdate() {
+    const arrowLeft = this.sliderArrowLeft.current;
+    if (this.sliderInfo.currentSlide == this.mockSlides.length) {
+      if (arrowLeft) {
+        this.setSliderToStart();
+        arrowLeft.click();
+      }
+    }
+    if (this.sliderInfo.currentSlide == -1) {
+    }
+  }
+  infiniteSlide() {
+    if (this.sliderInfo.currentSlide == this.mockSlides.length) {
+      this.setSliderToStart();
+      return;
+    }
+    this.makeSliderTransite();
+    if (this.sliderInfo.currentSlide == -1) {
+      return;
+    }
+  }
+  setSliderToStart() {
+    const sldierTrack = this.sliderTrackRef.current;
+    if (sldierTrack) {
+      sldierTrack.classList.remove('slider__track_transition');
+      sldierTrack.style.transform = `translateX(0px)`;
+      this.setCurrentPosition(0);
+      this.setCurrentSlide(0);
+    }
+  }
+  makeSliderTransite() {
+    const sldierTrack = this.sliderTrackRef.current;
+    if (sldierTrack) {
+      sldierTrack.classList.add('slider__track_transition');
+    }
   }
   moveSlider(direction: number, step: number) {
     const sldierTrack = this.sliderTrackRef.current;
     if (sldierTrack) {
-      const currentStep = step * direction;
-      sldierTrack.style.transform = `translateX(${currentStep}px)`;
+      const newPosition = this.sliderInfo.currentPosition + step * direction;
+      this.setCurrentSlide(direction * -1 + this.sliderInfo.currentSlide);
+      this.setCurrentPosition(newPosition);
+      sldierTrack.style.transform = `translateX(${newPosition}px)`;
     }
+  }
+  sliderSlideClass() {
+    return this.state.isTransitioned ? 'slider__track slider__track_transition' : 'slider__track';
   }
   render() {
     return (
@@ -44,28 +107,31 @@ export class Slider extends React.Component<TsliderProps, tSliderState> {
           <div className="slide-current"></div>
         </div>
         <div className="slider-track-inner">
-          <div className="slider__track" ref={this.sliderTrackRef}>
-            <div className="slide">
-              <img src={Slide1} alt="" />
-            </div>
-            <div className="slide">
-              <img src={Slide2} alt="" />
-            </div>
-            <div className="slide">
-              <img src={Slide3} alt="" />
-            </div>
-            <div className="slide">
-              <img src={Slide4} alt="" />
-            </div>
+          <div
+            className="slider__track slider__track_transition"
+            onTransitionEnd={this.infiniteSlide}
+            ref={this.sliderTrackRef}
+          >
+            {this.mockSlides.map((src, index) => {
+              return (
+                <div className="slide" key={index}>
+                  <img src={src} alt="" />
+                </div>
+              );
+            })}
           </div>
         </div>
 
         <div className="slider-controls">
-          <div className="arrow" onClick={this.moveSlider.bind(null, -1, 805)}>
+          <div
+            className="arrow"
+            onClick={this.moveSlider.bind(null, -1, this.props.slideWidth)}
+            ref={this.sliderArrowLeft}
+          >
             <ArrowLeft />
           </div>
           <div className="slider-border-line"></div>
-          <div className="arrow" onClick={this.moveSlider.bind(null, 1, 805)}>
+          <div className="arrow" onClick={this.moveSlider.bind(null, 1, this.props.slideWidth)}>
             <ArrowRight />
           </div>
         </div>
