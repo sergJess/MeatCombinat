@@ -1,3 +1,8 @@
+.spmc-about{
+	display: flex;
+	align-items: center;
+	column-gap: 3.5rem;
+}
 .spmc-about__image-text{
 	color: #F5F5F5;
 	font-size: 7.5rem;
@@ -23,5 +28,33 @@
 	left: 0;
 	top: 50%;
 	transform: translateY(50%);
+	background-color: #D1232A;
+}
+
+.spmc-about__numbers{
+	width: 100%;
+	display: flex;
+	border-top: 1px solid #404040;
+}
+.spmc-number{
+	display: flex;
+	align-items: center;
+	column-gap: 3px;
+}
+.spmc-about__number{
+	position: relative;
+	font-size: 11rem;
+	line-height: 13.4rem;
+	color: #D1DEE3;
+}
+.spmc-about__number::before{
+	position: absolute;
+	top: 0;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	content: "";
+	width: 14px;
+	height: 14px;
+	border-radius: 50%;
 	background-color: #D1232A;
 }
