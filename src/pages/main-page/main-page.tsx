@@ -3,6 +3,7 @@ import './main-page.css';
 import { SPMCQuality } from 'entities/spmc-quality/spmc-quality';
 import { Slider } from 'features/slider/slider';
 import { SpmcAbout } from 'shared/ui/spmc-about/spmc-about';
+import { Fascinated } from 'shared/ui/fascinated/fascinated';
 
 export class MainPage extends React.Component {
   render(): React.ReactNode {
@@ -13,6 +14,7 @@ export class MainPage extends React.Component {
           <Slider slides={[]} slideWidth={800} slideHeight={800} />
         </div>
         <SpmcAbout />
+        <Fascinated />
       </div>
     );
   }
