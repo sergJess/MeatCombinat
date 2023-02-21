@@ -8,7 +8,7 @@ export class SpmcAbout extends React.Component {
     return (
       <div className="spmc-number">
         <div className="spmc-about__number">{`${number}`}</div>
-        <div className="primary-text2">{text}</div>
+        <div className="primary-text2 spmc-about__text">{text}</div>
       </div>
     );
   }
@@ -22,7 +22,7 @@ export class SpmcAbout extends React.Component {
     return (
       <div className="spmc-about">
         <div className="spmc-about__image">
-          <img src={Sausage}></img>
+          {/* <img src={Sausage}></img> */}
           <p className="spmc-about__image-text">
             спмк
             <span className="spmc-about__image-text_colored">это</span>
@@ -30,7 +30,7 @@ export class SpmcAbout extends React.Component {
         </div>
         <div className="spmc-about__numbers">
           {texts.map((elem, index) => {
-            return this.renderNumberBlock(index + 1, elem);
+            return <div key={index}>{this.renderNumberBlock(index + 1, elem)}</div>;
           })}
         </div>
       </div>

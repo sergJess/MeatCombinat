@@ -1,13 +1,28 @@
 .spmc-about{
 	display: flex;
 	align-items: center;
+	min-height: 580px;
+	padding: 0 0 3rem 10rem;
 	column-gap: 3.5rem;
+	background-image: url('./img/shape-line.svg');
+	background-repeat: no-repeat;
+	background-position: 0 15px;
+}
+.spmc-about__image{
+	display: flex;
+	min-height: 260px;
+	background-image: url('./img/saucage.png');
+	background-repeat: no-repeat;
+ background-position: 15px 0px;
 }
 .spmc-about__image-text{
+	display: flex;
+	column-gap: 3.3rem;
+ align-items: center;
 	color: #F5F5F5;
 	font-size: 7.5rem;
 	font-weight: 700;
-	list-style: 8.25rem;
+	letter-spacing: 0.05em;
 }
 .spmc-about__image-text_colored{
 	display: inline-block;
@@ -57,4 +72,8 @@
 	height: 14px;
 	border-radius: 50%;
 	background-color: #D1232A;
+}
+.spmc-about__text{
+	padding-top: 4.2rem;
+	max-width: 252px;
 }
