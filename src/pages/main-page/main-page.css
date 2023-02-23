@@ -2,3 +2,9 @@
 	display: flex;
 	column-gap: 16.7rem;
 }
+.main-page__info-list{
+	display: flex;
+	column-gap: 4rem;
+	justify-content: space-between;
+	padding-left: 10rem;
+}
