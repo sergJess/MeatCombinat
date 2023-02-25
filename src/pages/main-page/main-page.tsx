@@ -8,6 +8,7 @@ import { InfoList } from 'shared/ui/info-list/info-list';
 import IconEcology from './images/info-list/Ico-ecology.svg';
 import IconSocialResponsibility from './images/info-list/Ico-heart.svg';
 import IconMan from './images/info-list/Ico-man.svg';
+import { SpmcDirectorNote } from 'shared/ui/spmc-director-note/spmc-director-note';
 
 export class MainPage extends React.Component {
   render(): React.ReactNode {
@@ -55,6 +56,9 @@ export class MainPage extends React.Component {
               'Поддержание комфортной климатической обстановки в компании',
             ]}
           />
+        </div>
+        <div className="main-page__director-note">
+          <SpmcDirectorNote />
         </div>
       </div>
     );

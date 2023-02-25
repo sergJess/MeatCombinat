@@ -1,0 +1,26 @@
+.spmc-director-note{
+	display: flex;
+	justify-content: space-between;
+	column-gap: 1rem;
+}
+.spmc-director-note__text-inner{
+	display: flex;
+	column-gap: 6rem;
+	padding: 10% 0 0 0; 
+}
+.spmc-director-note__quote{
+	display: inline-block;
+}
+.spmc-director-note__text-block{
+	max-width: 600px;
+}
+.spmc-director-note__text-first{
+	padding: 6rem 0 11.5rem 0;
+}
+.line-arrow-img{
+	width: 210%;
+	position: relative;
+}
+.spmc-director-note__img{
+	border-right: 6rem solid #F0F0F0;
+}
