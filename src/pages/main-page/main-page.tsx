@@ -21,6 +21,7 @@ export class MainPage extends React.Component {
         <Fascinated />
         <div className="main-page__info-list">
           <InfoList
+            isTransposedTitle={false}
             iconSrc={IconEcology}
             textTitle="Экология"
             textList={[
@@ -32,6 +33,7 @@ export class MainPage extends React.Component {
           />
           <InfoList
             iconSrc={IconSocialResponsibility}
+            isTransposedTitle={true}
             textTitle="Социальная ответственность"
             textList={[
               'Прозрачные условия найма и труда',
@@ -43,7 +45,8 @@ export class MainPage extends React.Component {
             ]}
           />
           <InfoList
-            iconSrc={IconEcology}
+            iconSrc={IconMan}
+            isTransposedTitle={false}
             textTitle="Управление"
             textList={[
               'Структура и гендерный состав руководителей',

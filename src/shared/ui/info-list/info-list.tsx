@@ -5,6 +5,7 @@ export type TinfoListProps = {
   iconSrc: string;
   textTitle: string;
   textList: Array<string>;
+  isTransposedTitle: boolean;
 };
 export class InfoList extends React.Component<TinfoListProps> {
   constructor(props: TinfoListProps) {
@@ -22,7 +23,20 @@ export class InfoList extends React.Component<TinfoListProps> {
           </div>
         </div>
         <div className="info-list__text-inner">
-          <h3 className="info-list__text-title">{this.props.textTitle}</h3>
+          {this.props.isTransposedTitle ? (
+            <h3 className="info-list__text-title">
+              {this.props.textTitle.split(' ').map((elem, index) => {
+                return (
+                  <span key={index} className="display-block">
+                    {elem}
+                  </span>
+                );
+              })}
+            </h3>
+          ) : (
+            <h3 className="info-list__text-title">{this.props.textTitle}</h3>
+          )}
+
           <ul>
             {this.props.textList.map((text, index) => {
               return (
