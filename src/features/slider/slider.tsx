@@ -28,6 +28,7 @@ export class Slider extends React.Component<TsliderProps, tsliderState> {
   private slidesLength: number;
   private mockSlides: string[];
   private sliderInfo: tSliderInfo;
+  private sliderTransitionEnd;
   constructor(props: TsliderProps) {
     super(props);
     this.sliderTrackRef = React.createRef();
@@ -39,6 +40,7 @@ export class Slider extends React.Component<TsliderProps, tsliderState> {
     this.addFirstSlideToEnd(this.mockSlides);
     this.infiniteSlide = this.infiniteSlide.bind(this);
     this.state = { isTransitioned: true };
+    this.sliderTransitionEnd = true;
   }
   addFirstSlideToEnd(slides: string[]) {
     if (slides.length > 1) {
@@ -51,26 +53,9 @@ export class Slider extends React.Component<TsliderProps, tsliderState> {
   setCurrentPosition(index: number) {
     this.sliderInfo.currentPosition = index;
   }
-  componentDidUpdate() {
-    const arrowLeft = this.sliderArrowLeft.current;
-    if (this.sliderInfo.currentSlide == this.mockSlides.length) {
-      if (arrowLeft) {
-        this.setSliderToStart();
-        arrowLeft.click();
-      }
-    }
-    if (this.sliderInfo.currentSlide == -1) {
-    }
-  }
+  componentDidUpdate() {}
   infiniteSlide() {
-    if (this.sliderInfo.currentSlide == this.mockSlides.length) {
-      this.setSliderToStart();
-      return;
-    }
-    this.makeSliderTransite();
-    if (this.sliderInfo.currentSlide == -1) {
-      return;
-    }
+    this.sliderTransitionEnd = true;
   }
   setSliderToStart() {
     const sldierTrack = this.sliderTrackRef.current;
@@ -89,7 +74,8 @@ export class Slider extends React.Component<TsliderProps, tsliderState> {
   }
   moveSlider(direction: number, step: number) {
     const sldierTrack = this.sliderTrackRef.current;
-    if (sldierTrack) {
+    if (sldierTrack && this.sliderTransitionEnd) {
+      this.sliderTransitionEnd = false;
       const newPosition = this.sliderInfo.currentPosition + step * direction;
       this.setCurrentSlide(direction * -1 + this.sliderInfo.currentSlide);
       this.setCurrentPosition(newPosition);
@@ -123,11 +109,7 @@ export class Slider extends React.Component<TsliderProps, tsliderState> {
         </div>
 
         <div className="slider-controls">
-          <div
-            className="arrow"
-            onClick={this.moveSlider.bind(null, -1, this.props.slideWidth)}
-            ref={this.sliderArrowLeft}
-          >
+          <div className="arrow" onClick={this.moveSlider.bind(null, -1, this.props.slideWidth)}>
             <ArrowLeft />
           </div>
           <div className="slider-border-line"></div>
