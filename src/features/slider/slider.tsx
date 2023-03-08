@@ -35,9 +35,12 @@ export class Slider extends React.Component<TsliderProps, tsliderState> {
     this.sliderArrowLeft = React.createRef();
     this.moveSlider = this.moveSlider.bind(this);
     this.slidesLength = this.props.slides.length;
-    this.sliderInfo = { currentSlide: 0, allSlides: this.slidesLength, currentPosition: 0 };
-    this.mockSlides = [Slide1, Slide2, Slide3, Slide4];
-    this.addFirstSlideToEnd(this.mockSlides);
+    this.mockSlides = [Slide4, Slide1, Slide2, Slide3, Slide4, Slide1];
+    this.sliderInfo = {
+      currentSlide: 1,
+      allSlides: this.mockSlides.length,
+      currentPosition: this.props.slideWidth,
+    };
     this.infiniteSlide = this.infiniteSlide.bind(this);
     this.state = { isTransitioned: true };
     this.sliderTransitionEnd = true;
@@ -47,23 +50,49 @@ export class Slider extends React.Component<TsliderProps, tsliderState> {
       slides.push(slides[0]);
     }
   }
+  addLastSlideToStart(slides: string[]) {
+    if (slides.length > 1) {
+      slides.push(slides[slides.length - 1]);
+    }
+  }
   setCurrentSlide(index: number) {
     this.sliderInfo.currentSlide = index;
   }
   setCurrentPosition(index: number) {
     this.sliderInfo.currentPosition = index;
   }
-  componentDidUpdate() {}
   infiniteSlide() {
     this.sliderTransitionEnd = true;
+    if (this.sliderInfo.currentSlide == this.sliderInfo.allSlides - 1) {
+      this.setSliderToStart();
+      return;
+    }
+    if (this.sliderInfo.currentSlide == 0) {
+      this.setSliderToEnd();
+      return;
+    }
+  }
+  componentDidMount(): void {
+    this.setSliderToStart();
   }
   setSliderToStart() {
     const sldierTrack = this.sliderTrackRef.current;
     if (sldierTrack) {
       sldierTrack.classList.remove('slider__track_transition');
-      sldierTrack.style.transform = `translateX(0px)`;
-      this.setCurrentPosition(0);
-      this.setCurrentSlide(0);
+      sldierTrack.style.transform = `translateX(${this.props.slideWidth * -1}px)`;
+      this.setCurrentPosition(this.props.slideWidth * -1);
+      this.setCurrentSlide(1);
+    }
+  }
+  setSliderToEnd() {
+    const sldierTrack = this.sliderTrackRef.current;
+    if (sldierTrack) {
+      sldierTrack.classList.remove('slider__track_transition');
+      sldierTrack.style.transform = `translateX(${
+        this.props.slideWidth * (this.sliderInfo.allSlides - 2) * -1
+      }px)`;
+      this.setCurrentPosition(this.props.slideWidth * (this.sliderInfo.allSlides - 2) * -1);
+      this.setCurrentSlide(this.sliderInfo.allSlides - 2);
     }
   }
   makeSliderTransite() {
@@ -79,7 +108,9 @@ export class Slider extends React.Component<TsliderProps, tsliderState> {
       const newPosition = this.sliderInfo.currentPosition + step * direction;
       this.setCurrentSlide(direction * -1 + this.sliderInfo.currentSlide);
       this.setCurrentPosition(newPosition);
+      this.makeSliderTransite();
       sldierTrack.style.transform = `translateX(${newPosition}px)`;
+      console.log(this.sliderInfo.currentSlide);
     }
   }
   sliderSlideClass() {
