@@ -1,0 +1,11 @@
+.button-to-up{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	width: 70px;
+	height: 70px;
+	padding: 10px;
+	border-radius: 50%;
+	background-color: #EDF3F5;
+	cursor: pointer;
+}

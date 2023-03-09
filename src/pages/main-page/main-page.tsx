@@ -9,6 +9,7 @@ import IconEcology from './images/info-list/Ico-ecology.svg';
 import IconSocialResponsibility from './images/info-list/Ico-heart.svg';
 import IconMan from './images/info-list/Ico-man.svg';
 import { SpmcDirectorNote } from 'shared/ui/spmc-director-note/spmc-director-note';
+import { ButtonToUp } from 'features/button-to-up/button-to-up';
 
 export class MainPage extends React.Component {
   render(): React.ReactNode {
@@ -59,6 +60,9 @@ export class MainPage extends React.Component {
         </div>
         <div className="main-page__director-note">
           <SpmcDirectorNote />
+        </div>
+        <div className="main-page__button-top-up">
+          <ButtonToUp />
         </div>
       </div>
     );

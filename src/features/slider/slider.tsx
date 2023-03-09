@@ -110,7 +110,6 @@ export class Slider extends React.Component<TsliderProps, tsliderState> {
       this.setCurrentPosition(newPosition);
       this.makeSliderTransite();
       sldierTrack.style.transform = `translateX(${newPosition}px)`;
-      console.log(this.sliderInfo.currentSlide);
     }
   }
   sliderSlideClass() {
