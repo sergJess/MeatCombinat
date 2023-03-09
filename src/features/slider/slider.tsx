@@ -24,7 +24,6 @@ type tSliderInfo = {
 
 export class Slider extends React.Component<TsliderProps, tsliderState> {
   private sliderTrackRef: React.RefObject<HTMLDivElement>;
-  private sliderArrowLeft: React.RefObject<HTMLDivElement>;
   private slidesLength: number;
   private mockSlides: string[];
   private sliderInfo: tSliderInfo;
@@ -32,13 +31,12 @@ export class Slider extends React.Component<TsliderProps, tsliderState> {
   constructor(props: TsliderProps) {
     super(props);
     this.sliderTrackRef = React.createRef();
-    this.sliderArrowLeft = React.createRef();
     this.moveSlider = this.moveSlider.bind(this);
     this.slidesLength = this.props.slides.length;
     this.mockSlides = [Slide4, Slide1, Slide2, Slide3, Slide4, Slide1];
     this.sliderInfo = {
       currentSlide: 1,
-      allSlides: this.mockSlides.length,
+      allSlides: this.mockSlides.length - 2,
       currentPosition: this.props.slideWidth,
     };
     this.infiniteSlide = this.infiniteSlide.bind(this);
@@ -63,7 +61,7 @@ export class Slider extends React.Component<TsliderProps, tsliderState> {
   }
   infiniteSlide() {
     this.sliderTransitionEnd = true;
-    if (this.sliderInfo.currentSlide == this.sliderInfo.allSlides - 1) {
+    if (this.sliderInfo.currentSlide == this.sliderInfo.allSlides + 1) {
       this.setSliderToStart();
       return;
     }
@@ -89,10 +87,10 @@ export class Slider extends React.Component<TsliderProps, tsliderState> {
     if (sldierTrack) {
       sldierTrack.classList.remove('slider__track_transition');
       sldierTrack.style.transform = `translateX(${
-        this.props.slideWidth * (this.sliderInfo.allSlides - 2) * -1
+        this.props.slideWidth * this.sliderInfo.allSlides * -1
       }px)`;
-      this.setCurrentPosition(this.props.slideWidth * (this.sliderInfo.allSlides - 2) * -1);
-      this.setCurrentSlide(this.sliderInfo.allSlides - 2);
+      this.setCurrentPosition(this.props.slideWidth * this.sliderInfo.allSlides * -1);
+      this.setCurrentSlide(this.sliderInfo.allSlides);
     }
   }
   makeSliderTransite() {
@@ -120,7 +118,7 @@ export class Slider extends React.Component<TsliderProps, tsliderState> {
       <div className="slider">
         <div className="slider-slides-info">
           <div className="slide-current"></div>
-          <div className="slide-current"></div>
+          <div className="slide-current">{this.sliderInfo.allSlides}</div>
         </div>
         <div className="slider-track-inner">
           <div

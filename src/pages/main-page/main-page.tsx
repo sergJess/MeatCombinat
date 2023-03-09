@@ -61,9 +61,7 @@ export class MainPage extends React.Component {
         <div className="main-page__director-note">
           <SpmcDirectorNote />
         </div>
-        <div className="main-page__button-top-up">
-          <ButtonToUp />
-        </div>
+        <div className="main-page__button-top-up">{/* <ButtonToUp /> */}</div>
       </div>
     );
   }
